@@ -1,0 +1,34 @@
+extends ../layout.pug
+
+block content
+    a.btn.btn-primary.mb-3(href="/laptop/create") Create New
+    .row
+        .col-md-4
+            form(action='/laptop/searchPrice')
+                .d-flex.justify-content-between
+                |From
+                input.form-control(name='minPrice')
+                |To
+                input.form-control(name='maxPrice')
+                input.btn.btn-primary(type="submit" value="Search Price")
+                button.btn.btn-secondary(type="button" onclick="window.location='/laptop'") Reset
+    h1.text-center Product List
+    table.table
+        thead.thead-dark
+        tr
+            th Name
+            th Technical Specifications
+            th Price
+            th Image
+        tbody
+            if laptops
+                each item in laptops
+                    tr
+                        td= item.name
+                        td= item.techSpecs
+                        td= item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'USD' })
+                        td
+                            img(src=`/images/${item.photo}` style="width:100px;height:auto")
+            else
+                tr 
+                    td(colspan="4") No Data!

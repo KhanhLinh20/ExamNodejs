@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block content
+    h1.text-center CREATE NEW LAPTOP
+    .col-md-6.offset-md-3
+        form(action="/laptop/createPost" method='post' enctype='multipart/form-data')
+            .form-group.mb-3
+                label(for='name') Name
+                input#name.form-control(name='name' placeholder="Enter name..." required)
+            .form-group.mb-3
+                label(for='techSpecs') Technical Specifications
+                input#techSpecs.form-control(name='techSpecs' placeholder="Enter specification..." required)
+            .form-group.mb-3
+                label(for='price') Price
+                input#price.form-control(name='price', type='number', step='any', min='1', placeholder="Enter price..." required)
+            .form-group.mb-3
+                label(for='image') Photo
+                input#image.form-control(name='image', type='file' required)
+            .col-md-12.d-flex.justify-content-between
+                a.btn.btn-secondary(href="/laptop") BACK
+                input.btn.btn-success(type='submit', value='CREATE')
